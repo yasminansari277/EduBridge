@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — EduBridge Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container" style="max-width:540px;">
+    <div class="auth-header">
+      <a href="index.html" class="auth-brand">
+        <i class="fas fa-graduation-cap"></i> EduBridge
+      </a>
+      <p class="auth-subtitle">Create your student or teacher account</p>
+    </div>
+
+    <div class="auth-body">
+      <form id="register-form">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">College Email Address *</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="student@college.edu" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password *</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="••••••••" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm-password">Confirm Password *</label>
+            <input type="password" id="reg-confirm-password" class="form-control" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="reg-role">I am registering as *</label>
+            <select id="reg-role" class="form-select" required>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher / Faculty</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-department">Department *</label>
+            <select id="reg-department" class="form-select" required>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Applications (BCA)">Applications (BCA)</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Software Engineering">Software Engineering</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" id="reg-semester-group">
+          <label class="form-label" for="reg-semester">Semester *</label>
+          <select id="reg-semester" class="form-select">
+            <option value="Sem 1">Semester 1</option>
+            <option value="Sem 2">Semester 2</option>
+            <option value="Sem 3">Semester 3</option>
+            <option value="Sem 4">Semester 4</option>
+            <option value="Sem 5" selected>Semester 5 (BCA III)</option>
+            <option value="Sem 6">Semester 6</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 btn-lg mt-2">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer-links text-center mt-4">
+        <span class="text-muted">Already have an account?</span>
+        <a href="login.html" class="font-semibold">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

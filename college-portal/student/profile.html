@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link active"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search profile settings...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Profile & Settings</h1>
+            <p class="page-subtitle">Manage your personal details and account credentials.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 2fr; gap:1.5rem;">
+          <!-- Left: Profile Summary Card -->
+          <div class="card text-center" style="text-align:center;">
+            <div class="avatar user-avatar-text" style="width:80px; height:80px; font-size:2rem; margin:0 auto 1rem;">AS</div>
+            <h3 class="user-name-text" style="font-size:1.25rem;">Aarav Sharma</h3>
+            <p class="text-sm text-muted mb-2">Student Account</p>
+            <span class="badge badge-info mb-4">Computer Science (Sem 5)</span>
+
+            <div style="border-top:1px solid #e2e8f0; padding-top:1rem; text-align:left;" class="text-xs text-muted">
+              <div class="mb-2"><i class="fas fa-envelope"></i> <span id="card-email">aarav.student@college.edu</span></div>
+              <div class="mb-2"><i class="fas fa-id-card"></i> Student ID: BCA2024095</div>
+              <div><i class="fas fa-calendar-alt"></i> Joined: July 2024</div>
+            </div>
+          </div>
+
+          <!-- Right: Editable Settings Form -->
+          <div class="card">
+            <h3 class="card-title mb-4">Edit Personal Information</h3>
+
+            <form id="student-profile-form">
+              <div class="form-group">
+                <label class="form-label" for="prof-name">Full Name</label>
+                <input type="text" id="prof-name" class="form-control" value="Aarav Sharma" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-email">Email Address (Read-only)</label>
+                <input type="email" id="prof-email" class="form-control" value="aarav.student@college.edu" readonly style="background:#f1f5f9;">
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="form-group">
+                  <label class="form-label" for="prof-dept">Department</label>
+                  <select id="prof-dept" class="form-select">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Applications (BCA)">Applications (BCA)</option>
+                    <option value="Information Technology">Information Technology</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="prof-sem">Semester</label>
+                  <select id="prof-sem" class="form-select">
+                    <option value="Sem 1">Semester 1</option>
+                    <option value="Sem 3">Semester 3</option>
+                    <option value="Sem 5" selected>Semester 5</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr style="border:none; border-top:1px solid #e2e8f0; margin:1.5rem 0;">
+
+              <h4 style="font-size:1.05rem; margin-bottom:1rem;">Change Password</h4>
+              
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="form-group">
+                  <label class="form-label" for="prof-new-pass">New Password</label>
+                  <input type="password" id="prof-new-pass" class="form-control" placeholder="••••••••">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="prof-confirm-pass">Confirm New Password</label>
+                  <input type="password" id="prof-confirm-pass" class="form-control" placeholder="••••••••">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary mt-2">
+                <i class="fas fa-save"></i> Save Profile Changes
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/student.js"></script>
+</body>
+</html>

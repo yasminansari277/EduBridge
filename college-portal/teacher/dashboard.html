@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/teacher.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Teacher</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link active"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> My Resources</a>
+        <a href="upload-resource.html" class="nav-item-link"><i class="fas fa-file-upload"></i> Upload Resource</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="create-assignment.html" class="nav-item-link"><i class="fas fa-plus-circle"></i> Create Assignment</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-user-check"></i> Submissions</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search teacher portal...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">SK</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Dr. Suresh Kumar</div>
+              <div class="user-role-title">Faculty • CS Dept</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Faculty Dashboard 👨‍🏫</h1>
+            <p class="page-subtitle">Manage uploaded lecture notes, review student assignment submissions, and publish grades.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="upload-resource.html" class="btn btn-outline"><i class="fas fa-upload"></i> Upload Notes</a>
+            <a href="create-assignment.html" class="btn btn-primary"><i class="fas fa-plus"></i> New Assignment</a>
+          </div>
+        </div>
+
+        <!-- Faculty Dashboard Metrics -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-blue">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="teacher-stat-resources">5</div>
+              <div class="stat-label">Uploaded Resources</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-info">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="teacher-stat-assignments">3</div>
+              <div class="stat-label">Active Assignments</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-warning">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="teacher-stat-pending">2</div>
+              <div class="stat-label">Pending Reviews</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-success">
+              <i class="fas fa-check-double"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="teacher-stat-graded">3</div>
+              <div class="stat-label">Graded Submissions</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-exclamation-circle text-warning"></i> Submissions Pending Evaluation</h2>
+                <a href="submissions.html" class="btn btn-outline btn-sm">View All Queue</a>
+              </div>
+              <div id="teacher-pending-reviews-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-bolt text-primary"></i> Quick Actions</h2>
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <a href="upload-resource.html" class="btn btn-outline w-100 justify-start"><i class="fas fa-file-upload"></i> Upload Lecture Notes</a>
+                <a href="create-assignment.html" class="btn btn-outline w-100 justify-start"><i class="fas fa-edit"></i> Create New Homework Task</a>
+                <a href="resources.html" class="btn btn-outline w-100 justify-start"><i class="fas fa-list"></i> Manage Resource Library</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject Management — Admin Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5;">Admin</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="users.html" class="nav-item-link"><i class="fas fa-users-cog"></i> User Management</a>
+        <a href="courses.html" class="nav-item-link"><i class="fas fa-university"></i> Courses</a>
+        <a href="subjects.html" class="nav-item-link active"><i class="fas fa-book"></i> Subjects</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-folder-open"></i> All Resources</a>
+        <a href="moderation.html" class="nav-item-link"><i class="fas fa-shield-alt"></i> Moderation</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search system records...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="#" class="user-profile-menu">
+            <div class="avatar user-avatar-text" style="background:var(--accent-navy);">SA</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">System Admin</div>
+              <div class="user-role-title">Administrator</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Subject Master Catalog</h1>
+            <p class="page-subtitle">Configure subject codes, semesters, and assign faculty leads.</p>
+          </div>
+          <button class="btn btn-primary" onclick="EduBridge.openModal('add-subject-modal')">
+            <i class="fas fa-plus"></i> Add New Subject
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Department</th>
+                  <th>Semester</th>
+                  <th>Assigned Teacher</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-subjects-table-body">
+                <!-- Dynamically populated by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <!-- Add Subject Modal -->
+  <div class="modal-backdrop" id="add-subject-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Subject Code</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="add-subject-form">
+        <div class="modal-body">
+          <div style="display:grid; grid-template-columns:1fr 2fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="subj-code">Code *</label>
+              <input type="text" id="subj-code" class="form-control" placeholder="e.g. CS504" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subj-name">Subject Title *</label>
+              <input type="text" id="subj-name" class="form-control" placeholder="e.g. Computer Networks" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="subj-dept">Department *</label>
+              <select id="subj-dept" class="form-select" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Applications (BCA)">Applications (BCA)</option>
+                <option value="Information Technology">Information Technology</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subj-sem">Semester *</label>
+              <select id="subj-sem" class="form-select" required>
+                <option value="Sem 1">Semester 1</option>
+                <option value="Sem 3">Semester 3</option>
+                <option value="Sem 5" selected>Semester 5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subj-teacher">Assigned Faculty Lead *</label>
+            <select id="subj-teacher" class="form-select" required>
+              <option value="Dr. Suresh Kumar">Dr. Suresh Kumar</option>
+              <option value="Prof. Meenakshi Rai">Prof. Meenakshi Rai</option>
+              <option value="Prof. Vikram Malhotra">Prof. Vikram Malhotra</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

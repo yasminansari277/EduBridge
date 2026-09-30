@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment Submission — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link active"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <a href="assignments.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Back to Assignments</a>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="card mb-4">
+          <div class="d-flex justify-between align-items-start mb-3">
+            <div>
+              <span class="badge badge-info mb-2" id="asg-details-subj">Web Technology</span>
+              <h1 class="page-title" id="asg-details-title" style="font-size:1.65rem;">Assignment 1: Mini Web Application using Vanilla JavaScript</h1>
+            </div>
+            <div style="text-align:right;">
+              <div class="text-xs text-muted">Maximum Score</div>
+              <span style="font-size:1.5rem; font-weight:800; color:var(--primary);" id="asg-details-marks">50 Marks</span>
+            </div>
+          </div>
+
+          <p class="text-muted mb-4" id="asg-details-desc">
+            Build a responsive single page mini app featuring dynamic DOM filtering, event handling, and custom CSS styling.
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; background:#f8fafc; padding:1.25rem; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:1.5rem;">
+            <div>
+              <span class="text-xs text-muted block">Faculty Instructor</span>
+              <strong id="asg-details-teacher">Prof. Meenakshi Rai</strong>
+            </div>
+            <div>
+              <span class="text-xs text-muted block">Deadline Date</span>
+              <strong id="asg-details-deadline" style="color:var(--danger);">2026-10-10</strong>
+            </div>
+            <div>
+              <span class="text-xs text-muted block">Reference Guidelines Attachment</span>
+              <div id="asg-details-attach" class="mt-1">
+                <a href="#" class="btn btn-outline btn-sm"><i class="fas fa-paperclip"></i> Spec_Guide.pdf</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="submission-status-box"></div>
+        </div>
+
+        <!-- Submission Form Card -->
+        <div class="card">
+          <h3 class="card-title mb-3"><i class="fas fa-cloud-upload-alt text-primary"></i> Upload & Submit Your Solution</h3>
+          
+          <form id="assignment-submit-form">
+            <div class="form-group">
+              <label class="form-label" for="subm-file">Select Assignment File *</label>
+              <input type="file" id="subm-file" class="form-control" accept=".pdf,.docx,.jpg,.png,.zip,.py" required>
+              <div class="form-hint">Accepted file types: PDF, DOCX, JPG, PNG, ZIP (Max size: 25 MB).</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="subm-comments">Additional Comments / Remarks (Optional)</label>
+              <textarea id="subm-comments" class="form-control" placeholder="Add any note for your professor regarding your submission..."></textarea>
+            </div>
+
+            <div class="d-flex justify-end gap-2">
+              <a href="assignments.html" class="btn btn-outline">Cancel</a>
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane"></i> Submit Assignment
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/assignments.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      EduBridgeAssignments.loadDetailsPage();
+    });
+  </script>
+</body>
+</html>

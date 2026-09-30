@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link active"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search notes, subjects...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <!-- Notification Bell -->
+          <div class="notif-dropdown-wrapper">
+            <button class="notif-btn" id="notif-btn">
+              <i class="far fa-bell"></i>
+              <span class="notif-badge">2</span>
+            </button>
+            <div class="notif-popover" id="notif-popover">
+              <div class="notif-popover-header">
+                <strong>Notifications</strong>
+                <span class="text-xs text-primary font-semibold">Mark all read</span>
+              </div>
+              <div class="notif-popover-body">
+                <div class="notif-item unread">
+                  <i class="fas fa-file-pdf text-danger mt-1"></i>
+                  <div>
+                    <div class="font-semibold">New Resource Uploaded</div>
+                    <div class="text-muted text-xs">Python OOP Complete Notes by Dr. Suresh</div>
+                    <div class="text-xs text-muted mt-1">10 mins ago</div>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <i class="fas fa-star text-warning mt-1"></i>
+                  <div>
+                    <div class="font-semibold">Grade Published</div>
+                    <div class="text-muted text-xs">Web Tech Assignment 1: 48/50</div>
+                    <div class="text-xs text-muted mt-1">1 hour ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Avatar Menu -->
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Welcome back, Student! 👋</h1>
+            <p class="page-subtitle">Here is an overview of your academic resources, upcoming deadlines, and grades.</p>
+          </div>
+          <div>
+            <a href="resources.html" class="btn btn-primary"><i class="fas fa-search"></i> Browse Resources</a>
+          </div>
+        </div>
+
+        <!-- Dashboard Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-blue">
+              <i class="fas fa-book"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="stat-total-resources">10</div>
+              <div class="stat-label">Available Resources</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-warning">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="stat-pending-assignments">3</div>
+              <div class="stat-label">Pending Assignments</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-success">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="stat-submitted-assignments">3</div>
+              <div class="stat-label">Submitted Assignments</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper stat-icon-info">
+              <i class="fas fa-award"></i>
+            </div>
+            <div>
+              <div class="stat-number" id="stat-avg-grade">93%</div>
+              <div class="stat-label">Average Grade</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Column Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Left Column: Upcoming Assignments -->
+          <div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-tasks text-primary"></i> Upcoming Assignments</h2>
+                <a href="assignments.html" class="btn btn-outline btn-sm">View All</a>
+              </div>
+              <div id="upcoming-assignments-list">
+                <!-- Dynamically populated by student.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Recent Resources & Activity -->
+          <div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-history text-primary"></i> Recent Notes & Materials</h2>
+                <a href="resources.html" class="btn btn-outline btn-sm">Library</a>
+              </div>
+              <div id="recent-resources-list">
+                <!-- Dynamically populated by student.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/resources.js"></script>
+  <script src="../js/assignments.js"></script>
+  <script src="../js/student.js"></script>
+</body>
+</html>

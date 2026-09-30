@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grades & Feedback — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link active"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search grades...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Grades & Feedback</h1>
+            <p class="page-subtitle">View marks awarded by faculty members and read detailed comments.</p>
+          </div>
+        </div>
+
+        <!-- Grade Summary Banner -->
+        <div class="grade-summary-banner">
+          <div>
+            <h2 style="color:#ffffff; font-size:1.5rem;">Academic Evaluation Overview</h2>
+            <p class="text-sm opacity-80">BCA Semester 5 Performance Report</p>
+          </div>
+          <div class="d-flex align-items-center gap-4">
+            <div>
+              <div class="text-xs opacity-75">Cumulative Average</div>
+              <div class="grade-badge-huge">93%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Assignment</th>
+                  <th>Subject</th>
+                  <th>Submitted Date</th>
+                  <th>Status</th>
+                  <th>Marks Obtained</th>
+                  <th>Teacher Feedback</th>
+                </tr>
+              </thead>
+              <tbody id="student-grades-table-body">
+                <!-- Dynamically populated by student.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <!-- Feedback Modal -->
+  <div class="modal-backdrop" id="feedback-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Teacher Grade Feedback</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="feedback-modal-body">
+        <!-- Dynamically filled -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="EduBridge.closeModal('feedback-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/student.js"></script>
+</body>
+</html>

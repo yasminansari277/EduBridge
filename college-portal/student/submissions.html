@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Submissions — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link active"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search my submissions...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">My Submissions</h1>
+            <p class="page-subtitle">Track your submitted files, submission timestamps, and evaluation feedback.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Assignment</th>
+                  <th>Subject</th>
+                  <th>Submitted File</th>
+                  <th>Submitted Date</th>
+                  <th>Status</th>
+                  <th>Grade</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="student-submissions-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/assignments.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUser = EduBridgeData.getCurrentUser();
+      const submissions = EduBridgeData.getSubmissions().filter(s => s.studentId === currentUser.id);
+      const tbody = document.getElementById('student-submissions-table-body');
+
+      if (tbody) {
+        if (submissions.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted p-4">No submissions submitted yet.</td></tr>`;
+        } else {
+          tbody.innerHTML = submissions.map(s => `
+            <tr>
+              <td><strong>${s.assignmentTitle}</strong></td>
+              <td>${s.subject}</td>
+              <td><i class="fas fa-file-alt text-primary"></i> ${s.fileName}</td>
+              <td>${s.submittedDate}</td>
+              <td><span class="badge badge-${s.status.toLowerCase()}">${s.status}</span></td>
+              <td><strong>${s.gradeMarks !== null ? `${s.gradeMarks} / ${s.maxMarks}` : '—'}</strong></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="EduBridgeAssignments.viewDetails('${s.assignmentId}')">
+                  <i class="fas fa-eye"></i> Details
+                </button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

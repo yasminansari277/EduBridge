@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management — Admin Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5;">Admin</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="users.html" class="nav-item-link active"><i class="fas fa-users-cog"></i> User Management</a>
+        <a href="courses.html" class="nav-item-link"><i class="fas fa-university"></i> Courses</a>
+        <a href="subjects.html" class="nav-item-link"><i class="fas fa-book"></i> Subjects</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-folder-open"></i> All Resources</a>
+        <a href="moderation.html" class="nav-item-link"><i class="fas fa-shield-alt"></i> Moderation</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search system records...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="#" class="user-profile-menu">
+            <div class="avatar user-avatar-text" style="background:var(--accent-navy);">SA</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">System Admin</div>
+              <div class="user-role-title">Administrator</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">User Management</h1>
+            <p class="page-subtitle">Manage student, teacher, and administrator accounts.</p>
+          </div>
+          <button class="btn btn-primary" onclick="EduBridge.openModal('add-user-modal')">
+            <i class="fas fa-user-plus"></i> Add New User
+          </button>
+        </div>
+
+        <!-- Filter Row -->
+        <div class="card mb-3">
+          <div class="user-filter-bar mb-0">
+            <div style="flex:2;">
+              <input type="text" id="user-search" class="form-control" placeholder="Search by name or email...">
+            </div>
+            <div style="flex:1;">
+              <select id="user-role-filter" class="form-select">
+                <option value="">All Roles</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div style="flex:1;">
+              <select id="user-status-filter" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Department</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <!-- Dynamically populated by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <!-- Add User Modal -->
+  <div class="modal-backdrop" id="add-user-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New User</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="add-user-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="new-user-name">Full Name *</label>
+            <input type="text" id="new-user-name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-user-email">Email Address *</label>
+            <input type="email" id="new-user-email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-user-role">Role *</label>
+            <select id="new-user-role" class="form-select" required>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-user-dept">Department *</label>
+            <select id="new-user-dept" class="form-select" required>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Applications (BCA)">Applications (BCA)</option>
+              <option value="Information Technology">Information Technology</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create User Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

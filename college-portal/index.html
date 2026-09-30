@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduBridge — Online College Notes & Assignment Sharing Portal</title>
+  <meta name="description" content="Centralized academic portal for accessing college notes, question papers, study materials, and managing student assignment submissions.">
+  
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Landing Page Specific Inline Helpers */
+    .landing-nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.15rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .landing-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 500;
+      color: var(--navy-800);
+    }
+    .hero-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+    }
+    .hero-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-size: 3rem;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+    .hero-preview-card {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
+      padding: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--text-main);
+      text-align: left;
+    }
+    .features-section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .how-section {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 2rem;
+    }
+    .how-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .step-card {
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.25rem;
+    }
+    .landing-footer {
+      background-color: var(--navy-900);
+      color: #94a3b8;
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="landing-nav">
+    <div class="landing-nav-container">
+      <a href="index.html" class="sidebar-brand" style="color:var(--navy-900);">
+        <i class="fas fa-graduation-cap text-primary"></i> EduBridge
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="student/resources.html">Resources</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+      </ul>
+
+      <div class="d-flex gap-2">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <h1 class="hero-title">Your College Resources, All in One Place</h1>
+      <p class="hero-desc">
+        Access notes, question papers and assignments anytime. Stay organized, meet deadlines and manage your academic resources from one convenient platform.
+      </p>
+      <div class="hero-buttons">
+        <a href="student/resources.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-search"></i> Explore Resources
+        </a>
+        <a href="login.html" class="btn btn-outline btn-lg" style="color:#ffffff; border-color:rgba(255,255,255,0.3);">
+          <i class="fas fa-arrow-right"></i> Get Started
+        </a>
+      </div>
+
+      <!-- Live Dashboard Demonstration Illustration -->
+      <div class="hero-preview-card">
+        <div class="d-flex justify-between align-items-center mb-3 pb-2" style="border-bottom:1px solid #e2e8f0;">
+          <div class="d-flex align-items-center gap-2">
+            <span style="width:12px; height:12px; background:#ef4444; border-radius:50%;"></span>
+            <span style="width:12px; height:12px; background:#f59e0b; border-radius:50%;"></span>
+            <span style="width:12px; height:12px; background:#10b981; border-radius:50%;"></span>
+            <span class="text-xs text-muted ml-2">EduBridge Live Portal Preview</span>
+          </div>
+          <span class="badge badge-approved"><i class="fas fa-circle text-xs"></i> System Operational</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 2fr; gap:1.25rem;">
+          <div style="background:#f8fafc; border-radius:8px; padding:1rem; border:1px solid #e2e8f0;">
+            <div class="font-semibold text-sm mb-2"><i class="fas fa-chart-line text-primary"></i> Quick Stats</div>
+            <div class="text-xs text-muted mb-1">Available Resources: <strong>10+</strong></div>
+            <div class="text-xs text-muted mb-1">Active Assignments: <strong>6</strong></div>
+            <div class="text-xs text-muted mb-1">Registered Students: <strong>500+</strong></div>
+            <div class="text-xs text-muted">Faculty Members: <strong>35+</strong></div>
+          </div>
+          <div style="background:#f8fafc; border-radius:8px; padding:1rem; border:1px solid #e2e8f0;">
+            <div class="font-semibold text-sm mb-2"><i class="fas fa-file-alt text-primary"></i> Recent Uploads</div>
+            <div class="text-xs mb-1">✔ Python Object-Oriented Notes <span class="text-muted">(Sem V)</span></div>
+            <div class="text-xs mb-1">✔ Web Tech Question Paper 2025 <span class="text-muted">(Sem V)</span></div>
+            <div class="text-xs">✔ Relational Algebra Guide <span class="text-muted">(Sem III)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="text-center" style="text-align:center;">
+      <h2 style="font-size:2.25rem;">Designed for Modern College Learning</h2>
+      <p class="text-muted mt-2">Empowering BCA students and faculty with seamless academic workflow.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="card">
+        <div class="stat-icon-wrapper stat-icon-blue mb-3">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3>Centralized Storage</h3>
+        <p class="text-muted text-sm mt-2">
+          Store and categorize all lecture notes, lab manuals, and syllabus copies safely in structured subject folders.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="stat-icon-wrapper stat-icon-success mb-3">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Easy Access</h3>
+        <p class="text-muted text-sm mt-2">
+          Filter study materials instantaneously by department, semester, subject, or resource type with zero hassle.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="stat-icon-wrapper stat-icon-warning mb-3">
+          <i class="fas fa-folder-tree"></i>
+        </div>
+        <h3>Better Organization</h3>
+        <p class="text-muted text-sm mt-2">
+          Never miss a reference file or question paper again. Streamlined view for both students and teachers.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="stat-icon-wrapper stat-icon-info mb-3">
+          <i class="fas fa-tasks"></i>
+        </div>
+        <h3>Assignment Management</h3>
+        <p class="text-muted text-sm mt-2">
+          Create assignments with deadlines, submit work digitally, and track grade evaluation with faculty feedback.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-section" id="how-it-works">
+    <div class="how-container">
+      <div class="text-center mb-5" style="text-align:center; margin-bottom:3rem;">
+        <h2 style="font-size:2.25rem;">How EduBridge Works</h2>
+        <p class="text-muted mt-2">A clear 3-step academic submission and learning pipeline.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Faculty Uploads Notes</h3>
+          <p class="text-muted text-sm mt-2">Teachers upload notes, question papers and assign homework deadlines.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Students Search & Download</h3>
+          <p class="text-muted text-sm mt-2">Students filter study materials, preview PDFs, and download reference guides.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Submit & Get Feedback</h3>
+          <p class="text-muted text-sm mt-2">Students submit solutions before deadline and review teacher grades and comments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-container">
+      <div>
+        <div class="sidebar-brand mb-3" style="color:#ffffff;">
+          <i class="fas fa-graduation-cap text-primary"></i> EduBridge
+        </div>
+        <p class="text-sm">Online College Notes & Assignment Sharing Portal. Built for BCA III mini project demonstration.</p>
+      </div>
+
+      <div>
+        <h4 style="color:#ffffff; margin-bottom:1rem; font-size:1rem;">Quick Links</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem;">
+          <li><a href="index.html" style="color:#94a3b8;">Home</a></li>
+          <li><a href="student/resources.html" style="color:#94a3b8;">Resource Library</a></li>
+          <li><a href="login.html" style="color:#94a3b8;">Portal Login</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color:#ffffff; margin-bottom:1rem; font-size:1rem;">Roles</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem;">
+          <li><a href="login.html" style="color:#94a3b8;">Student Portal</a></li>
+          <li><a href="login.html" style="color:#94a3b8;">Teacher Portal</a></li>
+          <li><a href="login.html" style="color:#94a3b8;">Admin Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color:#ffffff; margin-bottom:1rem; font-size:1rem;">Project Info</h4>
+        <p class="text-xs">Frontend: HTML5, CSS3, ES6 JavaScript</p>
+        <p class="text-xs mt-1">Backend Ready: PHP & MySQL API Structure</p>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; text-align:center; font-size:0.8125rem;">
+      &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+    </div>
+  </footer>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

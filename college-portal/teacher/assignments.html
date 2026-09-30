@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Assignments — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/teacher.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Teacher</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> My Resources</a>
+        <a href="upload-resource.html" class="nav-item-link"><i class="fas fa-file-upload"></i> Upload Resource</a>
+        <a href="assignments.html" class="nav-item-link active"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="create-assignment.html" class="nav-item-link"><i class="fas fa-plus-circle"></i> Create Assignment</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-user-check"></i> Submissions</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search my assignments...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">SK</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Dr. Suresh Kumar</div>
+              <div class="user-role-title">Faculty • CS Dept</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Manage Created Assignments</h1>
+            <p class="page-subtitle">Track deadlines, student submissions, and review progress.</p>
+          </div>
+          <a href="create-assignment.html" class="btn btn-primary"><i class="fas fa-plus"></i> Create New Assignment</a>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Assignment Title</th>
+                  <th>Subject</th>
+                  <th>Deadline</th>
+                  <th>Submissions</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="teacher-assignments-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = EduBridgeData.getAssignments();
+      const submissions = EduBridgeData.getSubmissions();
+      const tbody = document.getElementById('teacher-assignments-table-body');
+
+      if (tbody) {
+        tbody.innerHTML = list.map(a => {
+          const count = submissions.filter(s => s.assignmentId === a.id).length;
+          return `
+            <tr>
+              <td><strong>${a.title}</strong></td>
+              <td>${a.subject}</td>
+              <td>${a.deadline}</td>
+              <td><span class="badge badge-info">${count} Submissions</span></td>
+              <td><span class="badge badge-active">${a.status}</span></td>
+              <td>
+                <div class="d-flex gap-1">
+                  <a href="submissions.html?asg=${a.id}" class="btn btn-outline btn-sm"><i class="fas fa-users"></i> Submissions</a>
+                  <button class="btn btn-danger btn-sm" onclick="deleteAsg('${a.id}')"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      window.deleteAsg = function(id) {
+        if (confirm('Delete this assignment?')) {
+          EduBridgeData.deleteAssignment(id);
+          EduBridge.toast('Assignment deleted', 'warning');
+          setTimeout(() => window.location.reload(), 500);
+        }
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Resource — Faculty Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/teacher.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Teacher</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> My Resources</a>
+        <a href="upload-resource.html" class="nav-item-link active"><i class="fas fa-file-upload"></i> Upload Resource</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="create-assignment.html" class="nav-item-link"><i class="fas fa-plus-circle"></i> Create Assignment</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-user-check"></i> Submissions</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <a href="resources.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">SK</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Dr. Suresh Kumar</div>
+              <div class="user-role-title">Faculty • CS Dept</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Upload Academic Resource</h1>
+            <p class="page-subtitle">Share notes, question papers, and reference study materials with students.</p>
+          </div>
+        </div>
+
+        <div class="card" style="max-width:800px;">
+          <form id="upload-resource-form">
+            <div class="form-group">
+              <label class="form-label" for="res-title">Resource Title *</label>
+              <input type="text" id="res-title" class="form-control" placeholder="e.g. Python Object Oriented Programming Notes" required>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label" for="res-dept">Department *</label>
+                <select id="res-dept" class="form-select" required>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Applications (BCA)">Applications (BCA)</option>
+                  <option value="Information Technology">Information Technology</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="res-sem">Semester *</label>
+                <select id="res-sem" class="form-select" required>
+                  <option value="Sem 1">Semester 1</option>
+                  <option value="Sem 3">Semester 3</option>
+                  <option value="Sem 5" selected>Semester 5 (BCA III)</option>
+                  <option value="Sem 6">Semester 6</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label" for="res-subj">Subject *</label>
+                <select id="res-subj" class="form-select" required>
+                  <option value="Python Programming">Python Programming</option>
+                  <option value="Web Technology">Web Technology</option>
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Database Management Systems">Database Management Systems</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="res-type">Resource Type *</label>
+                <select id="res-type" class="form-select" required>
+                  <option value="Notes">Notes</option>
+                  <option value="Question Papers">Question Papers</option>
+                  <option value="Study Materials">Study Materials</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="res-desc">Description / Summary</label>
+              <textarea id="res-desc" class="form-control" placeholder="Brief explanation of topics covered in this document..."></textarea>
+            </div>
+
+            <!-- Drag & Drop Zone -->
+            <div class="form-group">
+              <label class="form-label">Attach Resource File (PDF, DOCX, Images) *</label>
+              <div class="upload-dropzone" id="upload-dropzone">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <div class="upload-text">Drag and drop file here, or click to browse</div>
+                <div class="text-xs text-muted">Supports PDF, DOCX, PNG, JPG (Max 50MB)</div>
+                <input type="file" id="resource-file-input" style="display:none;" accept=".pdf,.docx,.jpg,.png">
+              </div>
+              <div id="selected-file-box" style="display:none;"></div>
+            </div>
+
+            <div class="d-flex justify-end gap-2 mt-4">
+              <a href="resources.html" class="btn btn-outline">Cancel</a>
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-upload"></i> Publish & Upload Resource
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/teacher.js"></script>
+</body>
+</html>

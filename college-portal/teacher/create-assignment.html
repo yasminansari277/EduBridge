@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Assignment — Faculty Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/teacher.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Teacher</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-book-open"></i> My Resources</a>
+        <a href="upload-resource.html" class="nav-item-link"><i class="fas fa-file-upload"></i> Upload Resource</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="create-assignment.html" class="nav-item-link active"><i class="fas fa-plus-circle"></i> Create Assignment</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-user-check"></i> Submissions</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <a href="assignments.html" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Back to Assignments</a>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">SK</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Dr. Suresh Kumar</div>
+              <div class="user-role-title">Faculty • CS Dept</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Create New Assignment</h1>
+            <p class="page-subtitle">Publish a homework project, lab exercise, or theoretical assignment for your class.</p>
+          </div>
+        </div>
+
+        <div class="card" style="max-width:800px;">
+          <form id="create-assignment-form">
+            <div class="form-group">
+              <label class="form-label" for="asg-title">Assignment Title *</label>
+              <input type="text" id="asg-title" class="form-control" placeholder="e.g. Assignment 2: Python Data Processing Script" required>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label" for="asg-dept">Department *</label>
+                <select id="asg-dept" class="form-select" required>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Applications (BCA)">Applications (BCA)</option>
+                  <option value="Information Technology">Information Technology</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="asg-sem">Semester *</label>
+                <select id="asg-sem" class="form-select" required>
+                  <option value="Sem 1">Semester 1</option>
+                  <option value="Sem 3">Semester 3</option>
+                  <option value="Sem 5" selected>Semester 5 (BCA III)</option>
+                  <option value="Sem 6">Semester 6</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label" for="asg-subj">Subject *</label>
+                <select id="asg-subj" class="form-select" required>
+                  <option value="Python Programming">Python Programming</option>
+                  <option value="Web Technology">Web Technology</option>
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Database Management Systems">Database Management Systems</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="asg-marks">Maximum Marks *</label>
+                <input type="number" id="asg-marks" class="form-control" value="50" min="5" max="100" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="asg-deadline">Submission Deadline *</label>
+              <input type="date" id="asg-deadline" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="asg-desc">Detailed Problem Statement / Description *</label>
+              <textarea id="asg-desc" class="form-control" style="min-height:120px;" placeholder="Provide explicit guidelines, question lists, and formatting requirements..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="asg-attach">Reference Guidelines File (Optional)</label>
+              <input type="file" id="asg-attach" class="form-control" accept=".pdf,.docx">
+            </div>
+
+            <div class="d-flex justify-end gap-2 mt-4">
+              <a href="assignments.html" class="btn btn-outline">Cancel</a>
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane"></i> Publish Assignment
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/teacher.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const deadlineInput = document.getElementById('asg-deadline');
+      if (deadlineInput) {
+        const today = new Date().toISOString().split('T')[0];
+        deadlineInput.setAttribute('min', today);
+        deadlineInput.value = '2026-10-15';
+      }
+    });
+  </script>
+</body>
+</html>

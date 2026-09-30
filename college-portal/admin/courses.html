@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Management — Admin Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5;">Admin</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="users.html" class="nav-item-link"><i class="fas fa-users-cog"></i> User Management</a>
+        <a href="courses.html" class="nav-item-link active"><i class="fas fa-university"></i> Courses</a>
+        <a href="subjects.html" class="nav-item-link"><i class="fas fa-book"></i> Subjects</a>
+        <a href="resources.html" class="nav-item-link"><i class="fas fa-folder-open"></i> All Resources</a>
+        <a href="moderation.html" class="nav-item-link"><i class="fas fa-shield-alt"></i> Moderation</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search system records...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="#" class="user-profile-menu">
+            <div class="avatar user-avatar-text" style="background:var(--accent-navy);">SA</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">System Admin</div>
+              <div class="user-role-title">Administrator</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Course & Department Structure</h1>
+            <p class="page-subtitle">Organize academic curricula across college departments and semesters.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Department</th>
+                  <th>Semester</th>
+                  <th>Subjects</th>
+                  <th>Active Faculty</th>
+                  <th>Resources Uploaded</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Computer Science</strong></td>
+                  <td>Semester 5 (BCA III)</td>
+                  <td><span class="badge badge-info">3 Subjects</span></td>
+                  <td>Dr. Suresh Kumar, Prof. Vikram</td>
+                  <td><span class="badge badge-active">6 Resources</span></td>
+                  <td>
+                    <button class="btn btn-outline btn-sm" onclick="EduBridge.toast('Editing course details...', 'info')">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Applications (BCA)</strong></td>
+                  <td>Semester 1</td>
+                  <td><span class="badge badge-info">2 Subjects</span></td>
+                  <td>Prof. Meenakshi Rai</td>
+                  <td><span class="badge badge-active">2 Resources</span></td>
+                  <td>
+                    <button class="btn btn-outline btn-sm" onclick="EduBridge.toast('Editing course details...', 'info')">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Information Technology</strong></td>
+                  <td>Semester 3</td>
+                  <td><span class="badge badge-info">2 Subjects</span></td>
+                  <td>Dr. Suresh Kumar</td>
+                  <td><span class="badge badge-active">2 Resources</span></td>
+                  <td>
+                    <button class="btn btn-outline btn-sm" onclick="EduBridge.toast('Editing course details...', 'info')">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

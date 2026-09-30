@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Resources — EduBridge</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge">Student</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="resources.html" class="nav-item-link active"><i class="fas fa-book-open"></i> Resources</a>
+        <a href="assignments.html" class="nav-item-link"><i class="fas fa-tasks"></i> Assignments</a>
+        <a href="submissions.html" class="nav-item-link"><i class="fas fa-file-upload"></i> My Submissions</a>
+        <a href="grades.html" class="nav-item-link"><i class="fas fa-award"></i> Grades & Feedback</a>
+        <a href="profile.html" class="nav-item-link"><i class="fas fa-user-cog"></i> Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search resources...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="profile.html" class="user-profile-menu">
+            <div class="avatar user-avatar-text">AS</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">Aarav Sharma</div>
+              <div class="user-role-title">BCA III • Sem 5</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Resource Library</h1>
+            <p class="page-subtitle">Browse notes, question papers, and study materials uploaded by your faculty.</p>
+          </div>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="filter-bar">
+          <div>
+            <input type="text" id="res-search-input" class="form-control" placeholder="Search by title, subject, or teacher...">
+          </div>
+
+          <div>
+            <select id="res-dept-filter" class="form-select">
+              <option value="">All Departments</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Applications (BCA)">Applications (BCA)</option>
+              <option value="Information Technology">Information Technology</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="res-sem-filter" class="form-select">
+              <option value="">All Semesters</option>
+              <option value="Sem 1">Semester 1</option>
+              <option value="Sem 3">Semester 3</option>
+              <option value="Sem 5">Semester 5</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="res-type-filter" class="form-select">
+              <option value="">All Types</option>
+              <option value="Notes">Notes</option>
+              <option value="Question Papers">Question Papers</option>
+              <option value="Study Materials">Study Materials</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="res-sort-filter" class="form-select">
+              <option value="newest">Sort: Newest First</option>
+              <option value="oldest">Sort: Oldest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Resources Cards Grid -->
+        <div class="resources-grid" id="student-resources-grid">
+          <!-- Dynamically populated by student.js -->
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/resources.js"></script>
+  <script src="../js/student.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Resources — Admin Portal</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <i class="fas fa-graduation-cap"></i> EduBridge
+        </a>
+        <span class="sidebar-role-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5;">Admin</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item-link"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="users.html" class="nav-item-link"><i class="fas fa-users-cog"></i> User Management</a>
+        <a href="courses.html" class="nav-item-link"><i class="fas fa-university"></i> Courses</a>
+        <a href="subjects.html" class="nav-item-link"><i class="fas fa-book"></i> Subjects</a>
+        <a href="resources.html" class="nav-item-link active"><i class="fas fa-folder-open"></i> All Resources</a>
+        <a href="moderation.html" class="nav-item-link"><i class="fas fa-shield-alt"></i> Moderation</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline w-100" style="color:#ef4444; border-color:rgba(239,68,68,0.3);" onclick="EduBridge.logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search system records...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="#" class="user-profile-menu">
+            <div class="avatar user-avatar-text" style="background:var(--accent-navy);">SA</div>
+            <div class="user-info-text">
+              <div class="user-name user-name-text">System Admin</div>
+              <div class="user-role-title">Administrator</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Global Academic Resources Catalog</h1>
+            <p class="page-subtitle">Master list of all lecture notes, question papers, and study material files stored in the portal.</p>
+          </div>
+          <a href="moderation.html" class="btn btn-outline"><i class="fas fa-shield-alt"></i> Moderation Queue</a>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Resource Title</th>
+                  <th>Faculty Author</th>
+                  <th>Subject</th>
+                  <th>Department</th>
+                  <th>Upload Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-all-resources-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        &copy; 2026 EduBridge Portal. All rights reserved. BCA III Mini Project.
+      </footer>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/resources.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = EduBridgeData.getResources();
+      const tbody = document.getElementById('admin-all-resources-tbody');
+      if (tbody) {
+        tbody.innerHTML = list.map(r => `
+          <tr>
+            <td><strong>${r.title}</strong></td>
+            <td>${r.teacher}</td>
+            <td>${r.subject}</td>
+            <td>${r.department}</td>
+            <td>${r.uploadDate}</td>
+            <td><span class="badge badge-${r.status.toLowerCase()}">${r.status}</span></td>
+            <td>
+              <button class="btn btn-outline btn-sm" onclick="EduBridgeResources.viewResource('${r.id}')">
+                <i class="fas fa-eye"></i> View
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>
